@@ -11,6 +11,8 @@ namespace WebCarritoCompras
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string algo = (string)Session["id"];
+
 
         }
     }

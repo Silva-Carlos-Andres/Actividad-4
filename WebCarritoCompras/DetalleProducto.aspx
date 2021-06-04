@@ -3,4 +3,11 @@
 
     <h1>Producto Seleccionado</h1>
     <asp:Label Text="lala" ID= "lblSeleccionado" runat="server" />
+
+
+
+    <asp:button text="Agregar" ID="btnCarrito" OnClick="btnCarrito_Click" runat="server"/>
+
+    
+
 </asp:Content>

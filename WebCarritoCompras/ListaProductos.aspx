@@ -15,22 +15,22 @@
     </div>
 
             <asp:button text="Agregar" ID="btnAgregar" OnClick="btnAgregar_Click" runat="server"/>--%>
-    
-    <div class="container">
-        <div class="row">
+    <div class="contenido">
+    <div class="productos">
+        <div class="row" >
         <% foreach (Dominio.Articulo item in lista)
             {%>
             <div class="col">
 
                 <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <img src="<% = item.ImagenUrl %>" class="card-img-top" alt="...">
+                    <img src="<% = item.ImagenUrl %>" class="card-img-top" alt="...">
+                    <div class="card-body">                        
                         <h5 class="card-title"><% = item.Nombre %></h5>
                         <p class="card-text"><% = item.Descripcion %></p>
                           <ul class="list-group list-group-flush">                      
                         <div class="card-footer bg-transparent border-success"><h6><s>$<% = (item.Precio)-200 %></s> Envio Gratis</h6></div>
                               <div class="text-center">$<% = item.Precio %></div>
-                              <a href="DetalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Detalle</a>
+                              <a href="DetalleProducto.aspx?id=<% = item.Id %>" class="stretched-link"></a>
                     </div>
                 </div>
 
@@ -46,15 +46,42 @@
             <%} %>
             </div>
     </div>
+        </div>
 
 
-     <a class="card" href="google.com">
-      <img class="card-img-top" data-src="..." alt="Card image cap">
-      <div class="card-block">
-        <h4 class="card-title">Card title</h4>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </a>
-    
+<%--                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <img src="<% = item.ImagenUrl %>" class="card-img-top" alt="...">
+                        <h5 class="card-title"><% = item.Nombre %></h5>
+                        <p class="card-text"><% = item.Descripcion %></p>
+                          <ul class="list-group list-group-flush">                      
+                        <div class="card-footer bg-transparent border-success"><h6><s>$<% = (item.Precio)-200 %></s> Envio Gratis</h6></div>
+                              <div class="text-center">$<% = item.Precio %></div>
+                              <a href="DetalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Detalle</a>
+                    </div>
+                </div>--%>
+    <div class="container-menu">
+        <div class="cont-menu">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h5>Filtrar por Categoria</h5>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Seleccionar...</option>
+
+                <% foreach (Dominio.Articulo item in lista)
+                    {%>
+
+                <option value="<% = item.Nombre %>"><% = item.Categoria %></option>
+                <%} %>
+
+                <%--            <option value="value2" selected>Value 2</option>
+            <option value="value3">Value 3</option>--%>
+            </select>
+        </div>
+
+    </div>
+
+
 </asp:Content>

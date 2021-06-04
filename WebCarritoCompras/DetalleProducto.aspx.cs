@@ -14,8 +14,16 @@ namespace WebCarritoCompras
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
-
+            ArticuloBusiness business = new ArticuloBusiness();
             lblSeleccionado.Text = id;
+
+         
+        }
+
+        protected void btnCarrito_Click(object sender, EventArgs e)
+        {
+            Session.Add("id", Request.QueryString["id"]);
+            Response.Redirect("Carrito.aspx");
         }
     }
 }
