@@ -44,11 +44,12 @@ namespace Business
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.descripcion Categoria,ImagenUrl, Precio from Articulos A left join Marcas M ON A.IdMarca=M.Id left join Categorias C on A.IdCategoria=C.Id"); 
+                datos.setearConsulta("select A.Id,A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.descripcion Categoria,ImagenUrl, Precio from Articulos A left join Marcas M ON A.IdMarca=M.Id left join Categorias C on A.IdCategoria=C.Id"); 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];

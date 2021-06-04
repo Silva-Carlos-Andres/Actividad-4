@@ -16,12 +16,14 @@ namespace WebCarritoCompras
     {
 
         public List<Articulo> lista;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloBusiness Business = new ArticuloBusiness();
             try
             {
-                lista = Business.Listar2();   
+                lista = Business.Listar2();
+                
             }
             catch (Exception)
             {
