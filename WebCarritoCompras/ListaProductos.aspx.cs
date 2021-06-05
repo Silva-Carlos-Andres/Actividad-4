@@ -21,7 +21,8 @@ namespace WebCarritoCompras
             ArticuloBusiness Business = new ArticuloBusiness();
             try
             {
-                lista = Business.Listar2();   
+                lista = Business.Listar2();  
+                Session.Add("")
             }
             catch (Exception)
             {
@@ -34,6 +35,11 @@ namespace WebCarritoCompras
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Carrito.aspx");
+
+        }
+
+        protected void AgregarItemCarrito(object sender, EventArgs e)
+        {
 
         }
     }

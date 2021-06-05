@@ -23,8 +23,8 @@
             <div class="col">
 
                 <div class="card" style="width: 18rem;">
+                    <img src="<% = item.ImagenUrl %>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <img src="<% = item.ImagenUrl %>" class="card-img-top" alt="...">
                         <h5 class="card-title"><% = item.Nombre %></h5>
                         <p class="card-text"><% = item.Descripcion %></p>
                           <ul class="list-group list-group-flush">
@@ -33,7 +33,7 @@
                        
                         <div class="card-footer bg-transparent border-success"><h6><s>$<% = (item.Precio)-200 %></s> Envio Gratis</h6></div>
                               <div class="text-center">$<% = item.Precio %></div>
-                              <a href="#" class="btn btn-primary">Agregar al Carro</a>
+                              <a href="Carrito.aspx?id=<% = item.Id %>" class="btn btn-primary">Agregar al Carro</a>
                     </div>
                 </div>
 
