@@ -22,13 +22,18 @@ namespace WebCarritoCompras
             ArticuloBusiness Business = new ArticuloBusiness();
             try
             {
+<<<<<<< HEAD
                 lista = Business.Listar2();
                 
+=======
+                lista = Business.Listar2();  
+                Session.Add("listadoArticulos", lista);
+>>>>>>> ab8c97149f0087fbac33431a836a587e92f8d410
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Session.Add("Error", ex.ToString());
+                /*Response.Redirect("PaginaError.aspx"") A CREAR LA PAGINA DEL ERROR O UNA ALERTA, YA VEREMOS*/
             }
             
 
@@ -38,5 +43,6 @@ namespace WebCarritoCompras
             Response.Redirect("Carrito.aspx");
 
         }
+
     }
 }
