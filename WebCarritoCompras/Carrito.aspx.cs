@@ -13,17 +13,67 @@ namespace WebCarritoCompras
         public List<Articulo> carrito;
         protected void Page_Load(object sender, EventArgs e)
         {
-            carrito = (List<Articulo>)Session["listaArticulos"]; /* CREO UNA LISTA EN CASO DE QUE NO HAYA UNA PREVIA */
-            if (carrito == null)
-                carrito = new List<Articulo>();
+            try
+            {
+                carrito = (List<Articulo>)Session["listaArticulos"];
+                if (carrito == null)
+                    carrito = new List<Articulo>();
 
-            if(Request.QueryString["Id"] != "") { 
-                List<Articulo> listaPrincipal = (List<Articulo>)Session["listadoArticulos"];
-                carrito.Add(listaPrincipal.Find(x => x.Id.ToString() == Request.QueryString["Id"])); /*AGREGO EL ITEM A LA LISTA*/
+                if (!IsPostBack)
+                {
+                        if (Request.QueryString["Codigo"] != "")
+                        {
+                            List<Articulo> listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
+                            if (listadoArticulos != null)
+                                carrito.Add(listadoArticulos.Find(x => x.Codigo.ToString() == Request.QueryString["Codigo"]));
+                        }
+
+                        Session.Add("listaArticulos", carrito);
+
+
+
+                    repetidor.DataSource = carrito;
+                    repetidor.DataBind();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
 
-            Session.Add("listaArticulos", carrito); /*GUARDO LA LISTA EN EL SESSION*/
         }
+        public decimal CalcularPrecioTotal()
+        {
+            decimal precioTotal = 0;
+            foreach (Articulo item in carrito)
+            {
+                if (carrito != null && item != null)
+                    precioTotal += item.Precio;
+            }
+            return precioTotal;
+        }
+        
+        protected void EliminarArticuloCarrito(object sender, EventArgs e)
+        {
+            var Codigo = ((Button)sender).CommandArgument;
 
+            try
+            {
+            List<Articulo> carrito = (List<Articulo>)Session["listaArticulos"];
+            Articulo eliminar = carrito.Find(x => x.Codigo.ToString() == Codigo);
+            carrito.Remove(eliminar);
+            Session.Add("listaArticulos", carrito);
+            repetidor.DataSource = null;
+            repetidor.DataSource = carrito;
+            repetidor.DataBind();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -22,12 +22,12 @@ namespace WebCarritoCompras
             try
             {
                 lista = Business.Listar2();  
-                Session.Add("")
+                Session.Add("listadoArticulos", lista);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Session.Add("Error", ex.ToString());
+                /*Response.Redirect("PaginaError.aspx"") A CREAR LA PAGINA DEL ERROR O UNA ALERTA, YA VEREMOS*/
             }
             
 
@@ -38,9 +38,5 @@ namespace WebCarritoCompras
 
         }
 
-        protected void AgregarItemCarrito(object sender, EventArgs e)
-        {
-
-        }
     }
 }
